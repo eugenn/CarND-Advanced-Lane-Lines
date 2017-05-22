@@ -32,11 +32,11 @@ The goals / steps of this project are the following:
 ### 1. Camera Calibration
 
 
-#####1.1 Camera Calibration
+##### 1.1 Camera Calibration
 
 The first step in the project is camera calibrations which is done with the provided images in the camera_cal folder. Using findChessboardCorners the corners are extracted and fed into the calibrateCamera function. This function then provides us with our image matrix and the distortion coefficents. With this information we can move onto step 2.
 
-#####1.2 Distortion Correction
+##### 1.2 Distortion Correction
 
 Using the image matrix, the distortion coefficents and the undistort function the images can be properly undistored. To check that the images have been properly undistored a before and after has been applied to a checker board pattern.
 ![alt text][image1]
@@ -47,7 +47,7 @@ I used a combination of color and gradient thresholds to generate a binary image
 
 ![alt text][image3]
 
-###3. Perspective Transform
+### 3. Perspective Transform
 
 Now for this part I decided to transform before applying my thresholds on the image. (Contrary to how the helper functions are written). This was done with the getPerspectiveTransform and warpPerspective funtions.
 
@@ -69,16 +69,16 @@ Then I did some other stuff and fit my lane lines with a 2nd order polynomial ki
 
 ![alt text][image5]
 
-#####Figuring out bad frames
+##### Figuring out bad frames
 There will be some frames where no lanes will be detected or the lanes might not make sense. We determine the bad frames if any of the following conditions are met:
 No pixels were detected using the sliding window search or search around the previously detected line.
 The average gap between the lanes is less than 0.7 times pr greater than 1.3 times the globally maintained moving average of the lane gap.
-#####Averaging lanes
+##### Averaging lanes
 The lane for each frame is a simple average of 12 previously computed lanes. This is done in the averaged_line method in the code block below.
-#####What to do if a bad frame is detected?
+##### What to do if a bad frame is detected?
 Perform a sliding window search again (this is done in the brute_search method in the code block below
 If this still results in a bad frame then we fall back to the previous well detected frame.
-#####Final Pipeline
+##### Final Pipeline
 We combine all the code described in the code block above, plus the averaging and fallback techniques described in this block. The final code is in the pipeline method.
 
 #### 5. Computing the radius of curvature and center offset.
